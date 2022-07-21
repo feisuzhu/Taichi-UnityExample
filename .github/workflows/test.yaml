@@ -93,6 +93,8 @@ jobs:
           UNITY_EMAIL: 'taichi-build@proton.moe'
           UNITY_PASSWORD: 'Jtzwscd.1'
           KEYSTORE_PASS: android
+          KEY_ALIAS_NAME: androiddebugkey
+          KEY_ALIAS_PASS: android
           ANDROID_KEYSTORE_BASE64: >
             MIIKJwIBAzCCCeAGCSqGSIb3DQEHAaCCCdEEggnNMIIJyTCCBcAGCSqGSIb3DQEHAaCCBbEEggWt
             MIIFqTCCBaUGCyqGSIb3DQEMCgECoIIFQDCCBTwwZgYJKoZIhvcNAQUNMFkwOAYJKoZIhvcNAQUM
