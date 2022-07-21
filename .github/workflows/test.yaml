@@ -1,0 +1,102 @@
+name: Actions 😎
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build my project ✨
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # # Git LFS
+      # - name: Create LFS file list
+      #   run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      # - name: Restore LFS cache
+      #   uses: actions/cache@v2
+      #   id: lfs-cache
+      #   with:
+      #     path: .git/lfs
+      #     key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      # - name: Git LFS Pull
+      #   run: |
+      #     git lfs pull
+      #     git add .
+      #     git reset --hard
+
+      # # Cache
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: Library
+      #     key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+      #     restore-keys: |
+      #       Library-
+
+      # # Test
+      # - name: Run tests
+      #   uses: game-ci/unity-builder@v2
+      #   env:
+      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      #   with:
+      #     githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: |
+            <?xml version="1.0" encoding="UTF-8"?><root>
+                <License id="Terms">
+                    <MachineBindings>
+                        <Binding Key="1" Value="576562626572264761624c65526f7578"/>
+                        <Binding Key="2" Value="576562626572264761624c65526f7578"/>
+                    </MachineBindings>
+                    <MachineID Value="D7nTUnjNAmtsUMcnoyrqkgIbYdM="/>
+                    <SerialHash Value="38730ee3dc74a24232646c78e0e4a693abbc69ed"/>
+                    <Features>
+                        <Feature Value="33"/>
+                        <Feature Value="1"/>
+                        <Feature Value="12"/>
+                        <Feature Value="2"/>
+                        <Feature Value="24"/>
+                        <Feature Value="3"/>
+                        <Feature Value="36"/>
+                        <Feature Value="17"/>
+                        <Feature Value="19"/>
+                        <Feature Value="62"/>
+                        <Feature Value="60"/>
+                    </Features>
+                    <DeveloperData Value="AQAAAEY0LTUyRkUtNFZCVi1SREhNLTIyVDMtUFBaNg=="/>
+                    <SerialMasked Value="F4-52FE-4VBV-RDHM-22T3-XXXX"/>
+                    <StartDate Value="2022-07-21T00:00:00"/>
+                    <StopDate Value="2022-07-25T08:00:58"/>
+                    <UpdateDate Value="2022-07-22T07:00:57"/>
+                    <InitialActivationDate Value="2022-07-21T05:53:33"/>
+                    <LicenseVersion Value="6.x"/>
+                    <ClientProvidedVersion Value="2020.3.14f1"/>
+                    <AlwaysOnline Value="false"/>
+                    <Entitlements>
+                        <Entitlement Ns="unity_editor" Tag="UnityPersonal" Type="EDITOR" ValidTo="9999-12-31T00:00:00"/>
+                        <Entitlement Ns="unity_editor" Tag="DarkSkin" Type="EDITOR_FEATURE" ValidTo="9999-12-31T00:00:00"/>
+                    </Entitlements>
+                </License>
+            <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#Terms"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>24YATCCd+EnuzisST+JYMXzxOkE=</DigestValue></Reference></SignedInfo><SignatureValue>apLqdSAjb/dH53/nlL0naSzSJ6hURh2gtEL1TwdEjVNPdSNGXrWOEb9K6yabdImU0nCVxorM3Zje&#13;
+            /DS+r71buPVAEOhaT4IkgaH7irXoEEHYgkivO3QNthRqepiWwKdZecmNOrYzzs32MTGfuPz91vaq&#13;
+            c/fLHDjB5UA+ZzZ3s2aDi6Rghy8joKLDHGNqR0v9RZAah+JIT7QoQ+vA5HaQc8NTaeH3n/KRVCLQ&#13;
+            NeiHXT6mtxEy8lH9WPYsehFqgbevLH2u1xXdi29CtU7qrdPfracvJ6riE1hSlgka/PQiZd3jRjG6&#13;
+            DRoFcA2AWu99Iz+4RUmCGrMbliDQJohF3mPshg==</SignatureValue></Signature></root>
+          UNITY_EMAIL: 'taichi-build@proton.moe'
+          UNITY_PASSWORD: 'Jtzwscd.1'
+        with:
+          targetPlatform: Android
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
