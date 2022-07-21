@@ -92,6 +92,7 @@ jobs:
             DRoFcA2AWu99Iz+4RUmCGrMbliDQJohF3mPshg==</SignatureValue></Signature></root>
           UNITY_EMAIL: 'taichi-build@proton.moe'
           UNITY_PASSWORD: 'Jtzwscd.1'
+          ANDROID_KEYSTORE_NAME: debug.keystore
           ANDROID_KEYSTORE_PASS: android
           ANDROID_KEYALIAS_NAME: androiddebugkey
           ANDROID_KEYALIAS_PASS: android
