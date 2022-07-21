@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
     name: Build my project ✨
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     runs-on: [self-hosted]
     steps:
       # Checkout (without LFS)
@@ -92,6 +92,53 @@ jobs:
             DRoFcA2AWu99Iz+4RUmCGrMbliDQJohF3mPshg==</SignatureValue></Signature></root>
           UNITY_EMAIL: 'taichi-build@proton.moe'
           UNITY_PASSWORD: 'Jtzwscd.1'
+          ANDROID_KEYSTORE_BASE64: >
+            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
         with:
           targetPlatform: Android
 
